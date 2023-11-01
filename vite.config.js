@@ -1,6 +1,14 @@
 import { defineConfig } from 'vite'
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
+// 按需引入components插件
+import Components from 'unplugin-vue-components/vite'
+// 引用 Element Plus 及 Vant移动端
+import {  ElementPlusResolver, VantResolver, } from 'unplugin-vue-components/resolvers'
+// 按需引入import
+import AutoImport from 'unplugin-auto-import/vite'
+// 按需引入项目中的import
+import { dirResolver, DirResolverHelper } from 'vite-auto-import-resolvers'
 
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -11,11 +19,33 @@ function resolve(dir) {
 export default defineConfig({
   // 共享选项
   base: '/vite/',     // 公共基础路径
-  plugins: [vue()],  // 引用插件
+  plugins: [
+    vue(),
+    DirResolverHelper(),
+    AutoImport({
+      imports: [
+        'vue', 'vue-router', 'pinia'
+      ],
+      resolvers: [
+        ElementPlusResolver(),
+        dirResolver(),
+        dirResolver({
+          target: 'utils'
+        })
+      ]
+    }),
+    Components({
+      resolvers: [
+        ElementPlusResolver(),
+        VantResolver()
+      ]
+    })
+  ],  // 引用插件
   envPrefix: 'VITE_',  // 配置环境变量开头
   resolve: {
     alias: {
-      '@': resolve('./src')
+      '@': resolve('./src'),
+      '~/': `${resolve(__dirname, 'src')}/`
     }
   },
   // 服务器选项
