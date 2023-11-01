@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div>aaa</div>
+  <div>404</div>
 </template>
 
 <style scoped>
