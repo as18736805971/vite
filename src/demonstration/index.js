@@ -1,1 +1,3 @@
-console.log('哈哈哈哈')
+let cont = 18
+
+cont = '20'
