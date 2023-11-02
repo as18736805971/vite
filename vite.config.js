@@ -32,6 +32,7 @@ export default defineConfig({
     alias: {
       '@': resolve('./src')
     }
+    // extensions: ['.vue', '.js'] // 忽略文件后缀
   },
   // 服务器选项
   server: {
