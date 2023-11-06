@@ -1,4 +1,6 @@
 // 基本类型
+// @ts-ignore
+
 let num: number = 18
 let title: string = '星星'
 let state: boolean = true
@@ -127,3 +129,71 @@ obj3.title = 20
 obj3.age = '星星'
 obj3.sex = '男'
 // console.log(obj3)
+
+// typeof
+// console.log(typeof '星星')
+let p = { x: 1, y: 2 }
+function xy(point: typeof p) {}
+// xy({ x: 1, y: 2})
+let num5: typeof p.x
+
+// class
+class Person {
+    readonly age: number = 19
+    sex =  '男'
+    constructor(age: number, sex: string) {
+        this.age = age
+        this.sex = sex
+    }
+    protected scale(n: number) {
+        // this.age *= n
+        console.log('星星')
+    }
+}
+// const per = new Person(20, '女')
+// per.scale(10)
+class Dog extends Person {
+    bark() {
+        this.scale(2)
+        console.log('哈哈哈哈')
+    }
+}
+const dog = new Dog(20, '女')
+// dog.bark()
+
+// 接口
+interface Singable {
+    readonly name: string
+    sing(): void
+}
+class Person1 implements Singable {
+    name = '星星'
+    sing() {
+        console.log('你是星星')
+    }
+}
+let Person2: Singable = {
+    name: '星星',
+    sing() {
+        console.log('你是星星')
+    }
+}
+
+// 类型兼容
+class Person3 {
+    x: number
+    y: number
+}
+
+class Person5 {
+    x: number
+    y: number
+    z: number
+}
+let p2: Person3 = new Person5()
+
+type F1 = (num: number) => {}
+type F2 = (num: number, num1: number) => {}
+let f1: F1
+let f2: F2
+f2 = f1
