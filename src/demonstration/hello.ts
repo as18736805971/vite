@@ -180,20 +180,83 @@ let Person2: Singable = {
 }
 
 // 类型兼容
-class Person3 {
-    x: number
-    y: number
+
+interface Person6 {
+    title: string
+}
+interface Person7 {
+    age: number
+}
+type per = Person6 & Person7
+let p6: per = {
+    title: '哈哈',
+    age: 18
 }
 
-class Person5 {
-    x: number
-    y: number
-    z: number
+// 泛型
+function id<Type>(value: Type[]): Type[] {
+    console.log(value.length)
+    return value
 }
-let p2: Person3 = new Person5()
 
-type F1 = (num: number) => {}
-type F2 = (num: number, num1: number) => {}
-let f1: F1
-let f2: F2
-f2 = f1
+// console.log(typeof id(1))
+// console.log(typeof id('1'))
+interface Length {
+    length: number
+}
+function id1<Type extends Length>(value: Type): Type {
+    console.log(value.length)
+    return value
+}
+// id1('1')
+
+function getProp<Type, Key extends keyof Type>(obj: Type, key: Key) {
+    return obj[key]
+}
+let person = {
+    name: '星星',
+    age: 18
+}
+// getProp(person, 'name')
+// console.log(getProp(['abc', 'def'], 1))
+
+interface Props7 {
+    id: string,
+    children: number[]
+}
+type PartialProps = Readonly<Props7>
+
+interface Props1 {
+    id: string,
+    title: string
+    children: number[]
+}
+type PartialProps1 = Pick<Props1, 'id' | 'title'>
+type PartialProps2 = Record<'a'| 'b'| 'c', string[]>
+let obj5: PartialProps2 = {
+    a: ['1'],
+    b: ['2'],
+    c: ['3']
+}
+
+interface AnyObject {
+    [key: string]: number
+}
+let obj6:AnyObject = {
+    a: 1,
+    '星星': 2
+}
+
+type PropKeys = 'x' | 'y' | 'z'
+type Type = {[key in PropKeys]: number}
+
+import { Props, Point } from './index'
+
+let user_info:Props = {
+    name: '星星',
+    age: 18
+}
+let position1: Point = {
+    x: 1,
+    y: 2
+}
