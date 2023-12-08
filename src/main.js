@@ -1,9 +1,10 @@
-import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
-import pina from './store'
+import { VueExtend } from '@/core/VueExtend.js'
+import router from "@/router"
+import pina from "@/store"
 
-const app = createApp(App)
+const app = VueExtend(App)
 app.use(router)
 app.use(pina)
 app.mount('#app')
+
