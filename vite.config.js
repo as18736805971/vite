@@ -3,8 +3,6 @@ import path from 'path'
 import vue from '@vitejs/plugin-vue'
 // 按需引入components插件
 import Components from 'unplugin-vue-components/vite'
-// 引用 Element Plus 及 Vant移动端
-// import {  ElementPlusResolver, VantResolver, } from 'unplugin-vue-components/resolvers'
 // 按需引入import
 import AutoImport from 'unplugin-auto-import/vite'
 
@@ -37,7 +35,7 @@ export default defineConfig({
   // 服务器选项
   server: {
     host: '0.0.0.0', // 使用本机ip地址
-    port: 8888,      // 设置固定端口号
+    port: 8889,      // 设置固定端口号
     open: false      // 运行后自动打开网址
   },
   // 构建选项
